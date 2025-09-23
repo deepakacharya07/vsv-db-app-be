@@ -12,4 +12,6 @@ import java.util.List;
 public interface VsvMemberRepo extends JpaRepository<VsvMemberMaster, Integer> {
     @Query("SELECT m FROM VsvMemberMaster m WHERE LOWER(m.name) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<VsvMemberMaster> searchByName(@Param("name") String name);
+
+    boolean existsByMobileNo(String mobileNo);
 }
