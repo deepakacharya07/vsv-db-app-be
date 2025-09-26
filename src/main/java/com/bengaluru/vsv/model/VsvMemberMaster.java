@@ -22,64 +22,64 @@ import java.util.Date;
 public class VsvMemberMaster {
 
     @Id
-    @Column(name = "VSV_ID", nullable = false)
+    @Column(name = "vsv_id", nullable = false)
     private Integer vsvId;
 
-    @Column(name = "Name", nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     private String name;
 
-    @Column(name = "Gender", nullable = false, length = 10)
+    @Column(name = "gender", nullable = false, length = 10)
     private String gender;
 
-    @Column(name = "DOB", nullable = false)
+    @Column(name = "dob", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dob;
 
-    @Column(name = "Age", nullable = false)
+    @Column(name = "age", nullable = false)
     private Integer age;
 
-    @Column(name = "Birth_Place", length = 45)
+    @Column(name = "birth_place", length = 45)
     private String birthPlace;
 
-    @Column(name = "NativePlace", length = 45)
+    @Column(name = "native_place", length = 45)
     private String nativePlace;
 
-    @Column(name = "Marital_Status", nullable = false)
+    @Column(name = "marital_status", nullable = false)
     private Integer maritalStatus;
 
-    @Column(name = "Mobile_No", nullable = false, length = 15)
+    @Column(name = "mobile_no", nullable = false, length = 15)
     private String mobileNo;
 
-    @Column(name = "Blood_Group")
+    @Column(name = "blood_group")
     private Integer bloodGroup;
 
-    @Column(name = "Qualification_ID")
+    @Column(name = "qualification_id")
     private Integer qualificationId;
 
-    @Column(name = "Is_Student", nullable = false)
+    @Column(name = "is_student", nullable = false)
     private Boolean isStudent;
 
-    @Column(name = "Course_Detail", length = 100)
+    @Column(name = "course_detail", length = 100)
     private String courseDetail;
 
-    @Column(name = "Member_Status")
+    @Column(name = "member_status")
     private Integer memberStatus;
 
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "Committe_ID", nullable = false)
     //private CommitteMaster committe;
 
-    @Column(name = "CreatedUser", length = 10)
+    @Column(name = "created_user", length = 10)
     private String createdUser;
 
-    @Column(name = "CreatedDateTime")
+    @Column(name = "created_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDateTime;
 
-    @Column(name = "UpdatedUser", length = 10)
+    @Column(name = "updated_user", length = 10)
     private String updatedUser;
 
-    @Column(name = "UpdatedDateTime")
+    @Column(name = "updated_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDateTime;
 

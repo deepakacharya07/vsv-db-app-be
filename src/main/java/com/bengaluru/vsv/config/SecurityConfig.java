@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -27,14 +28,10 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        //http.csrf(AbstractHttpConfigurer::disable);
-        //http.authorizeHttpRequests( request -> request.anyRequest().authenticated());
-        //http.formLogin(Customizer.withDefaults());
-        //http.httpBasic(Customizer.withDefaults());
-        //http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests( request -> request
                         .requestMatchers("register","login")
                         .permitAll()
@@ -45,23 +42,6 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
-    /*@Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user1 = Users.withDefaultPasswordEncoder()
-                .username("deepak")
-                .password("pass1234")
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user2 = Users.withDefaultPasswordEncoder()
-                .username("user1")
-                .password("pass1234")
-                .roles("SUPER_ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2);
-    }*/
-
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

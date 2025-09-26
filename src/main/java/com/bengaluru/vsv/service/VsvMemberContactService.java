@@ -2,7 +2,7 @@ package com.bengaluru.vsv.service;
 
 import com.bengaluru.vsv.dto.VsvMemberContactDTO;
 import com.bengaluru.vsv.model.VsvMemberContact;
-import com.bengaluru.vsv.repo.VsvMemberContactRepo;
+import com.bengaluru.vsv.repository.VsvMemberContactRepo;
 import com.bengaluru.vsv.utils.mapper.VsvMemberContactMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

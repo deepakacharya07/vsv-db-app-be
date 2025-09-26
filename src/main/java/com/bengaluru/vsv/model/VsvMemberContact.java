@@ -2,8 +2,6 @@ package com.bengaluru.vsv.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
@@ -16,38 +14,38 @@ import lombok.Data;
 @Data
 public class VsvMemberContact {
     @Id
-    @Column(name = "VSV_ID")
+    @Column(name = "vsv_id")
     private Integer vsvId;
 
-    @Column(name = "Present_Address", length = 150)
+    @Column(name = "present_address", length = 150)
     private String presentAddress;
 
-    @Column(name = "Present_PIN")
+    @Column(name = "present_pin")
     private Integer presentPin;
 
-    @Column(name = "Present_Google_Map_Locn", length = 350)
+    @Column(name = "present_google_map_locn", length = 350)
     private String presentGoogleMapLocn;
 
-    @Column(name = "Permanent_Address", length = 150)
+    @Column(name = "permanent_address", length = 150)
     private String permanentAddress;
 
-    @Column(name = "Permanent_PIN")
+    @Column(name = "permanent_pin")
     private Integer permanentPin;
 
-    @Column(name = "Permanent_Google_Map_Locn", length = 350)
+    @Column(name = "permanent_google_map_locn", length = 350)
     private String permanentGoogleMapLocn;
 
-    @Column(name = "Whatsapp_No", length = 15)
+    @Column(name = "whatsapp_no", length = 15)
     private String whatsappNo;
 
-    @Column(name = "LandLine_No", length = 15)
+    @Column(name = "landline_no", length = 15)
     private String landLineNo;
 
-    @Column(name = "EmailID", length = 45)
+    @Column(name = "emailid", length = 45)
     private String emailId;
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "VSV_ID")
+    @JoinColumn(name = "vsv_id")
     private VsvMemberMaster member;
 }

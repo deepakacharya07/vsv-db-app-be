@@ -18,43 +18,43 @@ import java.util.List;
 public class CommitteMaster {
 
     @Id
-    @Column(name = "Committe_ID", nullable = false)
+    @Column(name = "committe_id", nullable = false)
     private Integer committeId;
 
-    @Column(name = "Committe_Name", length = 60)
+    @Column(name = "committe_name", length = 60)
     private String committeName;
 
-    @Column(name = "Registration_No", length = 60)
+    @Column(name = "registration_no", length = 60)
     private String registrationNo;
 
-    @Column(name = "Address", length = 60)
+    @Column(name = "address", length = 60)
     private String address;
 
-    @Column(name = "City", length = 45)
+    @Column(name = "city", length = 45)
     private String city;
 
-    @Column(name = "State", length = 45)
+    @Column(name = "state", length = 45)
     private String state;
 
-    @Column(name = "PIN")
+    @Column(name = "pin")
     private Long pin;
 
-    @Column(name = "ContactNumber", length = 45)
+    @Column(name = "contact_number", length = 45)
     private String contactNumber;
 
-    @Column(name = "BankAccountNumber", length = 45)
+    @Column(name = "bank_account_number", length = 45)
     private String bankAccountNumber;
 
-    @Column(name = "BankBranch", length = 45)
+    @Column(name = "bank_branch", length = 45)
     private String bankBranch;
 
-    @Column(name = "BankName", length = 45)
+    @Column(name = "bank_name", length = 45)
     private String bankName;
 
-    @Column(name = "BankIFSC", length = 45)
+    @Column(name = "bank_ifsc", length = 45)
     private String bankIFSC;
 
-    @Column(name = "UPIAddress", length = 45)
+    @Column(name = "upi_address", length = 45)
     private String upiAddress;
 
     //@OneToMany(mappedBy = "committe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

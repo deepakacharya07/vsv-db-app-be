@@ -1,4 +1,4 @@
-package com.bengaluru.vsv.repo;
+package com.bengaluru.vsv.repository;
 
 import com.bengaluru.vsv.model.VsvMemberMaster;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +14,7 @@ public interface VsvMemberRepo extends JpaRepository<VsvMemberMaster, Integer> {
     List<VsvMemberMaster> searchByName(@Param("name") String name);
 
     boolean existsByMobileNo(String mobileNo);
+
+    @Query("SELECT m.vsvId FROM VsvMemberMaster m WHERE m.mobileNo=:mobileNo and m.age > 18")
+    Integer findByMobileNo(String mobileNo);
 }

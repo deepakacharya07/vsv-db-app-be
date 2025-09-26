@@ -41,6 +41,9 @@ public class Users {
     @Column(nullable = false, length = 15)
     private String phoneNumber;
 
+    @Column(nullable = false, length = 15)
+    private Integer vsvId;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",

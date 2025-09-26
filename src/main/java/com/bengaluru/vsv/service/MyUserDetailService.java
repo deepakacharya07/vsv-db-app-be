@@ -2,7 +2,7 @@ package com.bengaluru.vsv.service;
 
 import com.bengaluru.vsv.config.security.UserPrincipal;
 import com.bengaluru.vsv.model.Users;
-import com.bengaluru.vsv.repo.UserRepo;
+import com.bengaluru.vsv.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

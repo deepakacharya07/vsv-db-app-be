@@ -1,4 +1,4 @@
-package com.bengaluru.vsv.repo;
+package com.bengaluru.vsv.repository;
 
 import com.bengaluru.vsv.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
