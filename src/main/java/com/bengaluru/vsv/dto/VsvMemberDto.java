@@ -1,10 +1,12 @@
 package com.bengaluru.vsv.dto;
 
+import com.bengaluru.vsv.model.VsvMemberHoroscope;
+import com.bengaluru.vsv.model.VsvMemberOccupation;
 import lombok.Data;
 import java.util.Date;
 
 @Data
-public class VsvMemberDTO {
+public class VsvMemberDto {
     private Integer vsvId;
     private String name;
     private String gender;
@@ -21,6 +23,12 @@ public class VsvMemberDTO {
     private Integer memberStatus;
 
     //private CommitteDTO committe;  // Simplified nested object
-    private VsvMemberContactDTO contact;
+    private VsvMemberContactDto contact;
+
+    private VsvMemberPhotoDto memberPhoto;
+
+    private VsvMemberHoroscope memberHoroscope;
+
+    private VsvMemberOccupation memberOccupation;
 }
 

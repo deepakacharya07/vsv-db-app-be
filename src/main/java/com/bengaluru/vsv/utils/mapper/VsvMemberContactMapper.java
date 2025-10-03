@@ -1,13 +1,13 @@
 package com.bengaluru.vsv.utils.mapper;
 
-import com.bengaluru.vsv.dto.VsvMemberContactDTO;
+import com.bengaluru.vsv.dto.VsvMemberContactDto;
 import com.bengaluru.vsv.model.VsvMemberContact;
 
 public class VsvMemberContactMapper {
-    public static VsvMemberContactDTO toDto(VsvMemberContact entity) {
+    public static VsvMemberContactDto toDto(VsvMemberContact entity) {
         if (entity == null) return null;
 
-        VsvMemberContactDTO dto = new VsvMemberContactDTO();
+        VsvMemberContactDto dto = new VsvMemberContactDto();
         dto.setVsvId(entity.getVsvId());
         dto.setPresentAddress(entity.getPresentAddress());
         dto.setPresentPin(entity.getPresentPin());
@@ -21,7 +21,7 @@ public class VsvMemberContactMapper {
         return dto;
     }
 
-    public static VsvMemberContact toEntity(VsvMemberContactDTO dto) {
+    public static VsvMemberContact toEntity(VsvMemberContactDto dto) {
         if (dto == null) return null;
 
         VsvMemberContact entity = new VsvMemberContact();

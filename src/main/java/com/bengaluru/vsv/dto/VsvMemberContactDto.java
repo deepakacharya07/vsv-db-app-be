@@ -3,7 +3,7 @@ package com.bengaluru.vsv.dto;
 import lombok.Data;
 
 @Data
-public class VsvMemberContactDTO {
+public class VsvMemberContactDto {
     private Integer vsvId;
     private String presentAddress;
     private Integer presentPin;

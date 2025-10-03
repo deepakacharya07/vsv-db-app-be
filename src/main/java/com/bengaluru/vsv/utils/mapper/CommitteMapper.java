@@ -1,14 +1,14 @@
 package com.bengaluru.vsv.utils.mapper;
 
-import com.bengaluru.vsv.dto.CommitteDTO;
+import com.bengaluru.vsv.dto.CommitteDto;
 import com.bengaluru.vsv.model.CommitteMaster;
 
 public class CommitteMapper {
 
-    public static CommitteDTO toDto(CommitteMaster entity) {
+    public static CommitteDto toDto(CommitteMaster entity) {
         if (entity == null) return null;
 
-        CommitteDTO dto = new CommitteDTO();
+        CommitteDto dto = new CommitteDto();
         dto.setCommitteId(entity.getCommitteId());
         dto.setCommitteName(entity.getCommitteName());
         dto.setRegistrationNo(entity.getRegistrationNo());
@@ -22,7 +22,7 @@ public class CommitteMapper {
         return dto;
     }
 
-    public static CommitteMaster toEntity(CommitteDTO dto) {
+    public static CommitteMaster toEntity(CommitteDto dto) {
         if (dto == null) return null;
 
         CommitteMaster entity = new CommitteMaster();

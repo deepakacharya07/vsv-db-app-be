@@ -1,6 +1,6 @@
 package com.bengaluru.vsv.service;
 
-import com.bengaluru.vsv.dto.VsvMemberContactDTO;
+import com.bengaluru.vsv.dto.VsvMemberContactDto;
 import com.bengaluru.vsv.model.VsvMemberContact;
 import com.bengaluru.vsv.repository.VsvMemberContactRepo;
 import com.bengaluru.vsv.utils.mapper.VsvMemberContactMapper;
@@ -15,13 +15,13 @@ public class VsvMemberContactService {
     @Autowired
     private VsvMemberContactRepo contactRepo;
 
-    public ResponseEntity<VsvMemberContactDTO> findById(Integer id) {
+    public ResponseEntity<VsvMemberContactDto> findById(Integer id) {
         Optional<VsvMemberContact> contactOpt = contactRepo.findById(id);
         return contactOpt.map(contact -> ResponseEntity.ok(VsvMemberContactMapper.toDto(contact)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public VsvMemberContactDTO save(VsvMemberContactDTO contactDTO) {
+    public VsvMemberContactDto save(VsvMemberContactDto contactDTO) {
         VsvMemberContact contact = VsvMemberContactMapper.toEntity(contactDTO);
         VsvMemberContact saved = contactRepo.save(contact);
         return VsvMemberContactMapper.toDto(saved);

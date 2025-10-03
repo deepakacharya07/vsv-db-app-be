@@ -1,6 +1,6 @@
 package com.bengaluru.vsv.service;
 
-import com.bengaluru.vsv.dto.VsvMemberDTO;
+import com.bengaluru.vsv.dto.VsvMemberDto;
 import com.bengaluru.vsv.model.VsvMemberMaster;
 import com.bengaluru.vsv.repository.VsvMemberRepo;
 import com.bengaluru.vsv.utils.mapper.VsvMemberMapper;
@@ -17,14 +17,14 @@ public class VsvMemberService {
     @Autowired
     private VsvMemberRepo vsvMemberRepo;
 
-    public List<VsvMemberDTO> findAllMembers() {
+    public List<VsvMemberDto> findAllMembers() {
         return vsvMemberRepo.findAll()
                 .stream()
                 .map(VsvMemberMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<VsvMemberDTO> findById(Integer id) {
+    public ResponseEntity<VsvMemberDto> findById(Integer id) {
         return vsvMemberRepo.findById(id)
                 .map(member -> ResponseEntity.ok(VsvMemberMapper.toDto(member)))
                 .orElse(ResponseEntity.notFound().build());
@@ -46,7 +46,7 @@ public class VsvMemberService {
         return vsvMemberRepo.findById(id);
     }
 
-    public List<VsvMemberDTO> searchByName(String name) {
+    public List<VsvMemberDto> searchByName(String name) {
         return vsvMemberRepo.searchByName(name)
                 .stream()
                 .map(VsvMemberMapper::toDto)

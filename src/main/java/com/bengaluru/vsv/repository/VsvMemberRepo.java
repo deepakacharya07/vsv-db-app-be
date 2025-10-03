@@ -17,4 +17,5 @@ public interface VsvMemberRepo extends JpaRepository<VsvMemberMaster, Integer> {
 
     @Query("SELECT m.vsvId FROM VsvMemberMaster m WHERE m.mobileNo=:mobileNo and m.age > 18")
     Integer findByMobileNo(String mobileNo);
+
 }

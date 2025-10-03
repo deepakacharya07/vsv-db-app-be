@@ -1,6 +1,6 @@
 package com.bengaluru.vsv.controller;
 
-import com.bengaluru.vsv.dto.VsvMemberContactDTO;
+import com.bengaluru.vsv.dto.VsvMemberContactDto;
 import com.bengaluru.vsv.service.VsvMemberContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +21,14 @@ public class VsvMemberContactController {
 
     // Get by ID
     @GetMapping("/{id}")
-    public ResponseEntity<VsvMemberContactDTO> getContactById(@PathVariable Integer id) {
+    public ResponseEntity<VsvMemberContactDto> getContactById(@PathVariable Integer id) {
         return contactService.findById(id);
     }
 
     // Create or update
     @PostMapping
-    public ResponseEntity<VsvMemberContactDTO> saveOrUpdate(@RequestBody VsvMemberContactDTO contactDTO) {
-        VsvMemberContactDTO saved = contactService.save(contactDTO);
+    public ResponseEntity<VsvMemberContactDto> saveOrUpdate(@RequestBody VsvMemberContactDto contactDTO) {
+        VsvMemberContactDto saved = contactService.save(contactDTO);
         return ResponseEntity.ok(saved);
     }
 

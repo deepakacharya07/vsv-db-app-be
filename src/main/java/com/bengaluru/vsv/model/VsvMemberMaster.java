@@ -1,12 +1,11 @@
 package com.bengaluru.vsv.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -85,5 +84,18 @@ public class VsvMemberMaster {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private VsvMemberContact contact;
+
+    @OneToOne(mappedBy = "memberMaster", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private VsvMemberPhoto memberPhoto;
+
+    //@OneToOne(mappedBy = "memberMaster", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "memberMaster", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private VsvMemberHoroscope memberHoroscope;
+
+    @OneToOne(mappedBy = "memberMaster", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private VsvMemberOccupation memberOccupation;
+
 }
 

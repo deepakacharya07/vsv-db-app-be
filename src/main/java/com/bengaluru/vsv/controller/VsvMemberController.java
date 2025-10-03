@@ -1,6 +1,6 @@
 package com.bengaluru.vsv.controller;
 
-import com.bengaluru.vsv.dto.VsvMemberDTO;
+import com.bengaluru.vsv.dto.VsvMemberDto;
 import com.bengaluru.vsv.model.VsvMemberMaster;
 import com.bengaluru.vsv.service.VsvMemberService;
 import com.bengaluru.vsv.utils.mapper.VsvMemberMapper;
@@ -26,13 +26,13 @@ public class VsvMemberController {
     private VsvMemberService vsvMemberService;
 
     @GetMapping
-    public List<VsvMemberDTO> getAllMembers() {
+    public List<VsvMemberDto> getAllMembers() {
         return vsvMemberService.findAllMembers();
     }
 
     // Get member by ID
     @GetMapping("/{id}")
-    public ResponseEntity<VsvMemberDTO> getMemberById(@PathVariable Integer id) {
+    public ResponseEntity<VsvMemberDto> getMemberById(@PathVariable Integer id) {
         return vsvMemberService.findById(id);
     }
 
@@ -45,8 +45,8 @@ public class VsvMemberController {
 
     // Update member
     @PutMapping("/{id}")
-    public ResponseEntity<VsvMemberDTO> updateMember(@PathVariable Integer id,
-                                                     @RequestBody VsvMemberDTO updatedDto) {
+    public ResponseEntity<VsvMemberDto> updateMember(@PathVariable Integer id,
+                                                     @RequestBody VsvMemberDto updatedDto) {
         Optional<VsvMemberMaster> existingOpt = vsvMemberService.findByIdEntity(id);
         if (existingOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -59,7 +59,7 @@ public class VsvMemberController {
         // e.g. updatedEntity.setCreatedDateTime(existingOpt.get().getCreatedDateTime());
 
         VsvMemberMaster saved = vsvMemberService.save(updatedEntity);
-        VsvMemberDTO savedDto = VsvMemberMapper.toDto(saved);
+        VsvMemberDto savedDto = VsvMemberMapper.toDto(saved);
         return ResponseEntity.ok(savedDto);
     }
 
@@ -74,7 +74,7 @@ public class VsvMemberController {
     }
 
     @GetMapping("/search")
-    public List<VsvMemberDTO> searchByName(@RequestParam String name) {
+    public List<VsvMemberDto> searchByName(@RequestParam String name) {
         return vsvMemberService.searchByName(name);
     }
 }

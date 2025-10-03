@@ -3,7 +3,7 @@ package com.bengaluru.vsv.dto;
 import lombok.Data;
 
 @Data
-public class CommitteDTO {
+public class CommitteDto {
     private Integer committeId;
     private String committeName;
     private String registrationNo;

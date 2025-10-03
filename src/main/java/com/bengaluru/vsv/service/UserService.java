@@ -1,13 +1,16 @@
 package com.bengaluru.vsv.service;
 
 import com.bengaluru.vsv.dto.LoginResponse;
-import com.bengaluru.vsv.dto.VsvMemberDTO;
+import com.bengaluru.vsv.dto.UserDto;
+import com.bengaluru.vsv.dto.VsvMemberDto;
 import com.bengaluru.vsv.model.Role;
 import com.bengaluru.vsv.model.Users;
 import com.bengaluru.vsv.repository.RoleRepo;
 import com.bengaluru.vsv.repository.UserRepo;
 import com.bengaluru.vsv.config.security.JWTService;
 import com.bengaluru.vsv.repository.VsvMemberRepo;
+import com.bengaluru.vsv.utils.mapper.UserMapper;
+import com.bengaluru.vsv.utils.types.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,13 +90,18 @@ public class UserService {
             );
             if (authentication.isAuthenticated()) {
                 Users loggedInUser = userRepo.findByUsername(user.getUsername());
+                UserDto loggedInUserDto = UserMapper.toDTO(loggedInUser);
 
-                // Step 2: Fetch related VsvMemberMaster entity using vsv_id
-                ResponseEntity<VsvMemberDTO> member = vsvMemberService.findById(loggedInUser.getVsvId());
+                if(!vsvMemberRepo.existsById(loggedInUserDto.getVsvId())) {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Vsv id does not exists");
+                }
 
+                if(loggedInUserDto.getVsvId() == null || loggedInUserDto.getStatus() != Status.ACTIVE) {
+                   return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Logged is user is not active");
+                }
                 // Step 3: Generate JWT Token
                 String token = jwtService.generateToken(user.getUsername());
-                return ResponseEntity.ok(new LoginResponse(token, member.getBody()));
+                return ResponseEntity.ok(new LoginResponse(token, loggedInUserDto.getVsvId(), loggedInUserDto.getRoles()));
             }
         } catch (AuthenticationException ex) {
             // Catch bad credentials or disabled account

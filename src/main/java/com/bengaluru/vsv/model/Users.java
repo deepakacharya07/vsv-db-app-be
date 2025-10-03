@@ -3,12 +3,15 @@ package com.bengaluru.vsv.model;
 import com.bengaluru.vsv.utils.types.Status;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "users")
 public class Users {
 
@@ -19,7 +22,7 @@ public class Users {
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(unique = true, length = 255)
     private String email;
 
     @Column(nullable = false)
@@ -61,5 +64,10 @@ public class Users {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", username='" + username + "'}";
     }
 }
