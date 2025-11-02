@@ -1,13 +1,17 @@
 package com.bengaluru.vsv.service;
 
 import com.bengaluru.vsv.dto.VsvMemberDto;
+import com.bengaluru.vsv.model.VsvFamilyTree;
 import com.bengaluru.vsv.model.VsvMemberMaster;
+import com.bengaluru.vsv.repository.VsvMemberFamilyTreeRepo;
 import com.bengaluru.vsv.repository.VsvMemberRepo;
 import com.bengaluru.vsv.utils.mapper.VsvMemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

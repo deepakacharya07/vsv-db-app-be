@@ -2,6 +2,7 @@ package com.bengaluru.vsv.controller;
 
 import com.bengaluru.vsv.dto.VsvMemberDto;
 import com.bengaluru.vsv.model.VsvMemberMaster;
+import com.bengaluru.vsv.service.VsvMemberFamilyTreeService;
 import com.bengaluru.vsv.service.VsvMemberService;
 import com.bengaluru.vsv.utils.mapper.VsvMemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class VsvMemberController {
     @Autowired
     private VsvMemberService vsvMemberService;
 
+    @Autowired
+    private VsvMemberFamilyTreeService vsvMemberFamilyTreeService;
+
     @GetMapping
     public List<VsvMemberDto> getAllMembers() {
         return vsvMemberService.findAllMembers();
@@ -34,6 +38,11 @@ public class VsvMemberController {
     @GetMapping("/{id}")
     public ResponseEntity<VsvMemberDto> getMemberById(@PathVariable Integer id) {
         return vsvMemberService.findById(id);
+    }
+
+    @GetMapping("/family/{id}")
+    public ResponseEntity<?> getFamilyMembersById(@PathVariable Integer id) {
+        return vsvMemberFamilyTreeService.getFamilyTreeByMemberId(id);
     }
 
     // Create new member

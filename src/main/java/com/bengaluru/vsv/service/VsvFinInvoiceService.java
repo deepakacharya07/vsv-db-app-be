@@ -51,19 +51,32 @@ public class VsvFinInvoiceService {
     private VsvFinInvoiceDto convertToDTO(VsvFinInvoice invoice) {
         VsvFinInvoiceDto dto = new VsvFinInvoiceDto();
 
-        dto.setInvoiceTyp(invoice.getId().getInvoiceType());
+        String invoiceType = invoice.getId().getInvoiceType();
+        if(invoiceType.equalsIgnoreCase("PM")) {
+            dto.setInvoiceType("Payments");
+        } else {
+            dto.setInvoiceType("Receipts");
+        }
         dto.setInvoiceTag(invoice.getId().getInvoiceTag());
-        dto.setInvDocNO(invoice.getId().getInvoiceDocNo());
-        dto.setInvoiceDate(invoice.getInvDate());
+        dto.setInvoiceDocNo(invoice.getId().getInvoiceDocNo());
+        dto.setManualDocNumber(invoice.getManualNo());
+        dto.setInvoiceYear(invoice.getInvoiceYear());
+        dto.setInvoiceDate(invoice.getInvoiceDate());
         dto.setAmount(invoice.getAmount());
         dto.setMemberName(invoice.getMemberName());
         dto.setMobileNo(invoice.getMobileno());
         dto.setRemarks(invoice.getRemarks());
         dto.setVsvId(invoice.getVsvId());
+        dto.setCashAmount(invoice.getCashAmount());
+        dto.setOnlineAmount(invoice.getOnlineAmount());
+        dto.setChequeAmount(invoice.getChequeAmount());
+        dto.setCardAmount(invoice.getCardAmount());
+        dto.setChequeDate(invoice.getChequeDate());
+        dto.calculateAndSetPaymentMethod();
 
         // Safely set optional related entity fields
         if (invoice.getInvoiceCategory() != null) {
-            dto.setInvCatTypDesc(invoice.getInvoiceCategory().getInvCatTypDesc());
+            dto.setInvoiceCategoryTypeDesc(invoice.getInvoiceCategory().getInvCatTypDesc());
         }
 
         if (invoice.getMemberTyp() != null) {

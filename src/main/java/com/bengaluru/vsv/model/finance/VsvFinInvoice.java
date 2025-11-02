@@ -13,7 +13,7 @@ public class VsvFinInvoice {
     private VsvFinInvoiceKey id;
 
     @Column(name = "invoice_date")
-    private Date invDate;
+    private Date invoiceDate;
 
     @Column(name = "invoice_year")
     private Integer invoiceYear;
@@ -25,25 +25,25 @@ public class VsvFinInvoice {
     private Float amount;
 
     @Column(name = "cash_amount")
-    private Float cshAmt;
+    private Float cashAmount;
 
     @Column(name = "online_amount")
-    private Float onlineAmt;
+    private Float onlineAmount;
 
     @Column(name = "online_refno", length = 25)
     private String onlineRefno;
 
     @Column(name = "cheque_amount")
-    private Float chqAmt;
+    private Float chequeAmount;
 
     @Column(name = "cheque_no")
-    private Integer chqno;
+    private Integer chequeNo;
 
     @Column(name = "cheque_date")
-    private Date chqDate;
+    private Date chequeDate;
 
     @Column(name = "card_amount")
-    private Float cardAmt;
+    private Float cardAmount;
 
     @Column(name = "card_no", length = 10)
     private String cardNo;

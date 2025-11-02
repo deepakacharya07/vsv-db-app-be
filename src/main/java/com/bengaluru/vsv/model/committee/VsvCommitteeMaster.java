@@ -1,21 +1,17 @@
-package com.bengaluru.vsv.model;
+package com.bengaluru.vsv.model.committee;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Table(name = "committe_master")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommitteMaster {
+public class VsvCommitteeMaster {
 
     @Id
     @Column(name = "committe_id", nullable = false)

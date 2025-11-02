@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests( request -> request
-                        .requestMatchers("register","login")
+                        .requestMatchers("register","login","vsv-committee")
                         .permitAll()
                         .anyRequest().authenticated())
                 //.formLogin(Customizer.withDefaults())

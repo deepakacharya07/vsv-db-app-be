@@ -10,14 +10,14 @@ public class VsvFinInvoiceMapper {
     public VsvFinInvoiceDto mapToDTO(VsvFinInvoice vsvFinInvoice) {
         VsvFinInvoiceDto dto = new VsvFinInvoiceDto();
         
-        dto.setInvoiceDate(vsvFinInvoice.getInvDate());
+        dto.setInvoiceDate(vsvFinInvoice.getInvoiceDate());
         dto.setInvoiceYear(vsvFinInvoice.getInvoiceYear());
         dto.setAmount(vsvFinInvoice.getAmount());
         dto.setMemberName(vsvFinInvoice.getMemberName());
         
         // Accessing associated entities
-        dto.setInvCatTypDesc(vsvFinInvoice.getInvoiceCategory().getInvCatTypDesc());
-        dto.setInvTypeDesc(vsvFinInvoice.getId().getInvoiceType());
+        dto.setInvoiceCategoryTypeDesc(vsvFinInvoice.getInvoiceCategory().getInvCatTypDesc());
+        dto.setInvoiceTypeDesc(vsvFinInvoice.getId().getInvoiceType());
 
         return dto;
     }

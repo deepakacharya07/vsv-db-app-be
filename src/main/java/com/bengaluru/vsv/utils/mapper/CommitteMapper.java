@@ -1,11 +1,11 @@
 package com.bengaluru.vsv.utils.mapper;
 
 import com.bengaluru.vsv.dto.CommitteDto;
-import com.bengaluru.vsv.model.CommitteMaster;
+import com.bengaluru.vsv.model.committee.VsvCommitteeMaster;
 
 public class CommitteMapper {
 
-    public static CommitteDto toDto(CommitteMaster entity) {
+    public static CommitteDto toDto(VsvCommitteeMaster entity) {
         if (entity == null) return null;
 
         CommitteDto dto = new CommitteDto();
@@ -22,10 +22,10 @@ public class CommitteMapper {
         return dto;
     }
 
-    public static CommitteMaster toEntity(CommitteDto dto) {
+    public static VsvCommitteeMaster toEntity(CommitteDto dto) {
         if (dto == null) return null;
 
-        CommitteMaster entity = new CommitteMaster();
+        VsvCommitteeMaster entity = new VsvCommitteeMaster();
         entity.setCommitteId(dto.getCommitteId());
         entity.setCommitteName(dto.getCommitteName());
         entity.setRegistrationNo(dto.getRegistrationNo());
