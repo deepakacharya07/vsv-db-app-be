@@ -22,19 +22,19 @@ public class VsvMemberOccupation {
     @Column(name = "vsv_id", nullable = false)
     private Integer vsvId;
 
-    @Column(name = "Employement_Status_ID")
+    @Column(name = "employement_status_id")
     private Integer employementStatusId;
 
-    @Column(name = "Salary_Slab_ID")
+    @Column(name = "salary_slab_id")
     private Integer salarySlabId;
 
-    @Column(name = "Occupation_Details", length = 70)
+    @Column(name = "occupation_details", length = 70)
     private String occupationDetails;
 
-    @Column(name = "Office_Address", length = 150)
+    @Column(name = "office_address", length = 150)
     private String officeAddress;
 
-    @Column(name = "Bank", length = 45)
+    @Column(name = "bank", length = 45)
     private String bank;
 
     // If there's a corresponding VsvMemberMaster entity, you can use @OneToOne or @ManyToOne

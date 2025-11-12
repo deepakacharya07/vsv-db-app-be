@@ -1,9 +1,12 @@
 package com.bengaluru.vsv.model;
 
 import com.bengaluru.vsv.model.keys.VsvFamilyTreeKey;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name = "vsv_family_tree")
@@ -22,11 +25,6 @@ public class VsvFamilyTree {
 
     // --- Relationships ---
 
-    // Reference to the main member
-//    @ManyToOne
-//    @JoinColumn(name = "vsv_id", insertable = false, updatable = false)
-//    private VsvMemberMaster member;
-
     // Reference to the relationship type
     @ManyToOne
     @JoinColumn(name = "relation_id", insertable = false, updatable = false)
@@ -34,7 +32,7 @@ public class VsvFamilyTree {
 
     // Optional: Reference to related member (e.g., father, mother)
     // Add only if you want this mapped
-//    @ManyToOne
-//    @JoinColumn(name = "relation_vsv_id", insertable = false, updatable = false)
-//    private VsvMemberMaster relatedMember;
+    @ManyToOne
+    @JoinColumn(name = "relation_vsv_id", insertable = false, updatable = false)
+    private VsvMemberMaster relatedMember;
 }

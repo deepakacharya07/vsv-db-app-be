@@ -51,7 +51,7 @@ public class UserService {
             if (user.getPhoneNumber() == null || !vsvMemberRepo.existsByMobileNo(user.getPhoneNumber())) {
                 return ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
-                        .body("Mobile number not found in customer records");
+                        .body("Mobile number not found in the vsv records. Kindly register.");
             }
 
             // ✅ Check if email already exists

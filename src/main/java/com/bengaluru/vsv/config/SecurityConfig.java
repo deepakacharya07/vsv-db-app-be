@@ -33,11 +33,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests( request -> request
-                        .requestMatchers("register","login","vsv-committee")
+                        .requestMatchers("register","login","vsv-committee","vsv-photo/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 //.formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
+                //.httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

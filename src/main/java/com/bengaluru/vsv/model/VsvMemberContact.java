@@ -41,7 +41,7 @@ public class VsvMemberContact {
     @Column(name = "landline_no", length = 15)
     private String landLineNo;
 
-    @Column(name = "emailid", length = 45)
+    @Column(name = "email_id", length = 45)
     private String emailId;
 
     @OneToOne

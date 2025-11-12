@@ -19,18 +19,21 @@ import java.util.stream.Collectors;
 @Service
 public class VsvMemberService {
     @Autowired
+    private VsvMemberMapper vsvMemberMapper;
+
+    @Autowired
     private VsvMemberRepo vsvMemberRepo;
 
     public List<VsvMemberDto> findAllMembers() {
         return vsvMemberRepo.findAll()
                 .stream()
-                .map(VsvMemberMapper::toDto)
+                .map(vsvMemberMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     public ResponseEntity<VsvMemberDto> findById(Integer id) {
         return vsvMemberRepo.findById(id)
-                .map(member -> ResponseEntity.ok(VsvMemberMapper.toDto(member)))
+                .map(member -> ResponseEntity.ok(vsvMemberMapper.toDto(member)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -53,7 +56,7 @@ public class VsvMemberService {
     public List<VsvMemberDto> searchByName(String name) {
         return vsvMemberRepo.searchByName(name)
                 .stream()
-                .map(VsvMemberMapper::toDto)
+                .map(vsvMemberMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

@@ -5,13 +5,16 @@ import com.bengaluru.vsv.dto.VsvMemberPhotoDto;
 import com.bengaluru.vsv.model.VsvMemberContact;
 import com.bengaluru.vsv.model.VsvMemberMaster;
 import com.bengaluru.vsv.model.VsvMemberPhoto;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import java.util.Base64;
-
+@Component
 public class VsvMemberMapper {
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     // Convert entity to DTO
-    public static VsvMemberDto toDto(VsvMemberMaster entity) {
+    public VsvMemberDto toDto(VsvMemberMaster entity) {
         if (entity == null) return null;
 
         VsvMemberDto dto = new VsvMemberDto();
@@ -38,18 +41,29 @@ public class VsvMemberMapper {
         return dto;
     }
 
-    public static VsvMemberPhotoDto toDto(VsvMemberPhoto entity) {
+    public VsvMemberPhotoDto toDto(VsvMemberPhoto entity) {
         if (entity == null) return null;
 
         VsvMemberPhotoDto dto = new VsvMemberPhotoDto();
         dto.setVsvId(entity.getVsvId());
-        dto.setIndividualPhoto(entity.getIndividualPhoto());
-        dto.setFamilyPhoto(entity.getFamilyPhoto());
+        dto.setIndividualPhotoUrl(entity.getIndividualPhotoUrl());
+        dto.setFamilyPhotoUrl(entity.getFamilyPhotoUrl());
+        if (entity.getIndividualPhotoBlob() != null) {
+            String imageUrl = String.format("%s/vsv-photo/%d",
+                    baseUrl,
+                    entity.getVsvId());
+            dto.setIndividualPhotoBaseUrl(imageUrl);
+        }
+//        if (entity.getFamilyPhotoBlob() != null) {
+//            dto.setFamilyPhotoBase64(
+//                    "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(entity.getFamilyPhotoBlob())
+//            );
+//        }
         return dto;
     }
 
     // Convert DTO to entity
-    public static VsvMemberMaster toEntity(VsvMemberDto dto) {
+    public VsvMemberMaster toEntity(VsvMemberDto dto) {
         if (dto == null) return null;
 
         VsvMemberMaster entity = new VsvMemberMaster();
@@ -80,13 +94,15 @@ public class VsvMemberMapper {
         return entity;
     }
 
-    public static VsvMemberPhoto toEntity(VsvMemberPhotoDto dto) {
+    public VsvMemberPhoto toEntity(VsvMemberPhotoDto dto) {
         if (dto == null) return null;
 
         VsvMemberPhoto entity = new VsvMemberPhoto();
         entity.setVsvId(dto.getVsvId());
-        entity.setIndividualPhoto(dto.getIndividualPhoto());
-        entity.setFamilyPhoto(dto.getFamilyPhoto());
+        entity.setIndividualPhotoUrl(dto.getIndividualPhotoUrl());
+        entity.setFamilyPhotoUrl(dto.getFamilyPhotoUrl());
+        //entity.setIndividualPhotoBlob(dto.getIndividualPhotoBlob());
+        //entity.setFamilyPhotoBlob(dto.getFamilyPhotoBlob());
         return entity;
     }
 }

@@ -29,6 +29,9 @@ public class VsvMemberController {
     @Autowired
     private VsvMemberFamilyTreeService vsvMemberFamilyTreeService;
 
+    @Autowired
+    private VsvMemberMapper vsvMemberMapper;
+
     @GetMapping
     public List<VsvMemberDto> getAllMembers() {
         return vsvMemberService.findAllMembers();
@@ -61,14 +64,14 @@ public class VsvMemberController {
             return ResponseEntity.notFound().build();
         }
 
-        VsvMemberMaster updatedEntity = VsvMemberMapper.toEntity(updatedDto);
+        VsvMemberMaster updatedEntity = vsvMemberMapper.toEntity(updatedDto);
         updatedEntity.setVsvId(id);
 
         // Optional: preserve fields from existing entity
         // e.g. updatedEntity.setCreatedDateTime(existingOpt.get().getCreatedDateTime());
 
         VsvMemberMaster saved = vsvMemberService.save(updatedEntity);
-        VsvMemberDto savedDto = VsvMemberMapper.toDto(saved);
+        VsvMemberDto savedDto = vsvMemberMapper.toDto(saved);
         return ResponseEntity.ok(savedDto);
     }
 

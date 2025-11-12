@@ -5,18 +5,22 @@ import com.bengaluru.vsv.dto.MemberFamilyTreeDto;
 import com.bengaluru.vsv.model.VsvFamilyTree;
 import com.bengaluru.vsv.repository.VsvMemberFamilyTreeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class VsvMemberFamilyTreeService {
+    @Value("${app.base-url}")
+    private String baseUrl;
+
     @Autowired
     private VsvMemberFamilyTreeRepo vsvMemberFamilyTreeRepo;
+
     public ResponseEntity<?> getFamilyTreeByMemberId(Integer memberId) {
         List<VsvFamilyTree> familyTrees = vsvMemberFamilyTreeRepo.findByIdVsvId(memberId);
         if (familyTrees.isEmpty()) {
@@ -35,14 +39,21 @@ public class VsvMemberFamilyTreeService {
         List<FamilyMemberDto> members = new ArrayList<>();
 
         for (VsvFamilyTree entity : sourceList) {
-            FamilyMemberDto member = new FamilyMemberDto(
-                    entity.getRelationVsvId(),
-                    entity.getRelationName(),
-                    entity.getRelationship().getRelationDescription(),
-                    entity.getRelationship().getLevel(),
-                    entity.getId().getOrder()
-            );
-            members.add(member);
+            FamilyMemberDto familyMemberDto = new FamilyMemberDto();
+            familyMemberDto.setRelationVsvId(entity.getRelationVsvId());
+            familyMemberDto.setRelationName(entity.getRelationName());
+            familyMemberDto.setLevel(entity.getRelationship().getLevel());
+            familyMemberDto.setRelationDescription(entity.getRelationship().getRelationDescription());
+            if(entity.getRelatedMember() != null) {
+                familyMemberDto.setGender(entity.getRelatedMember().getGender());
+                if(entity.getRelatedMember().getMemberPhoto() != null && entity.getRelatedMember().getMemberPhoto().getIndividualPhotoBlob()!= null) {
+                    String imageUrl = String.format("%s/vsv-photo/%d",
+                            baseUrl,
+                            entity.getRelatedMember().getMemberPhoto().getVsvId());
+                    familyMemberDto.setIndividualPhotoBaseUrl(imageUrl);
+                }
+            }
+            members.add(familyMemberDto);
         }
 
         return new MemberFamilyTreeDto(vsvId, members);

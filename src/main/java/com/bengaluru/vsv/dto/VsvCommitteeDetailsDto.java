@@ -2,7 +2,6 @@ package com.bengaluru.vsv.dto;
 
 import com.bengaluru.vsv.model.committee.CommitteeDesignation;
 import com.bengaluru.vsv.model.committee.CommitteeHeader;
-import com.bengaluru.vsv.model.committee.VsvCommitteeDetails;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,4 +20,5 @@ public class VsvCommitteeDetailsDto {
     private String gender;
     private CommitteeDesignation committeeDesignation;
     private CommitteeHeader committeeHeader;
+    private String individualPhotoBaseUrl;
 }
